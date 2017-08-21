@@ -38,4 +38,9 @@ describe Atm do
       expected_output = { status: false, message: 'card expired', date: Date.today }
       expect(subject.withdraw(6, '1234', account)).to eq expected_output
     end
+    it 'rejects card if not active' do
+      allow(account).to receive(:account_status).and_return(:disabled)
+      expected_output = { status: false, message: 'card disabled', date: Date.today }
+      expect(subject.withdraw(1, '1234', account)).to eq expected_output
+    end
 end
