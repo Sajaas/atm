@@ -21,6 +21,10 @@ class Person
   end
 
   def deposit(amount)
-    @cash += amount
+    @account == nil ? missing_account : @cash += amount
+  end
+
+  def missing_account
+    raise 'no account present'
   end
 end
