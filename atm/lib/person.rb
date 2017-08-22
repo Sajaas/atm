@@ -21,7 +21,19 @@ class Person
   end
 
   def deposit(amount)
-    @account == nil ? missing_account : @cash += amount
+    @account == nil ? missing_account : add_funds(amount)
+  end
+
+  def add_funds(amount)
+    @cash -= amount
+    @account.balance += amount
+  end
+
+  def get_cash(args = {})
+    atm = args[:atm]
+    response = atm.withdraw(args[:amount], args[:pin_code], args[:account])
+    @cash += args[:amount]
+    return response
   end
 
   def missing_account
