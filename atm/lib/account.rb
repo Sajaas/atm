@@ -9,6 +9,7 @@ class Account
     @pin_code = rand(1000..9999)
     @exp_date = Date.today.next_year(STANDARD_VALIDITY_YRS).strftime('%m/%y')
     @balance = 0
+    @account_status = :active
   end
 
 end
