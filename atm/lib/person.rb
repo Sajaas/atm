@@ -6,7 +6,10 @@ class Person
   end
 
   def set_name(obj)
-    @name = obj
+    obj == nil ? missing_name : @name = obj
   end
-  
+
+  def missing_name
+    raise 'A name is required'
+  end
 end
