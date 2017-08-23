@@ -48,7 +48,7 @@ class Atm
 
   def perform_transaction(amount, account)
     @funds -= amount
-    account.balance = account.balance - amount
+    account.balance -= amount
     { status: true, message: 'success', date: Date.today, amount: amount, bills: add_bills(amount) }
   end
 
