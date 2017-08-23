@@ -17,6 +17,8 @@ class Account
     @account_status = :deactivated
   end
 
+  private
+
   def set_owner(obj)
     obj == nil ? missing_owner : @owner = obj
   end
