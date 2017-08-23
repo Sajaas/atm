@@ -29,11 +29,18 @@ class Person
     @account.balance += amount
   end
 
-  def get_cash(args = {})
-    atm = args[:atm]
+  def withdraw_cash(args = {})
+    args[:atm] == nil ? missing_atm : atm = args[:atm]
     response = atm.withdraw(args[:amount], args[:pin_code], args[:account])
+    response[:status] == true ? get_cash(args = {}) : response
+  end
+
+  def get_cash(args = {})
     @cash += args[:amount]
-    return response
+  end
+
+  def missing_atm
+    raise 'an ATM is required'
   end
 
   def missing_account

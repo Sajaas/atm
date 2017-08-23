@@ -45,10 +45,15 @@ describe Person do
       expect(subject.account.balance).to be 100
       expect(subject.cash).to be 0
     end
-    it 'can get cash from funds' do
-      command = lambda { subject.get_cash(amount: 100, pin: subject.account.pin_code, account: subject.account, atm: atm) }
+    it 'can withdraw cash from funds' do
+      command = lambda { subject.withdraw_cash(amount: 100, pin: subject.account.pin_code, account: subject.account, atm: atm) }
       expect(command.call).to be_truthy
     end
+    it 'cash withdraw is expected to raise error if no ATM is passed in' do
+      command = lambda { subject.withdraw_cash(amount: 100, pin: subject.account.pin_code, account: subject.account) }
+      expect{command.call}.to raise_error 'an ATM is required'
+    end
+    
   end
   describe 'can not manage funds if no account has been created' do
     before { subject.account = nil }
