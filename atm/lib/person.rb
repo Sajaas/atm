@@ -6,7 +6,7 @@ class Person
 
   def initialize(attrs = {})
     set_name(attrs[:name])
-    @cash = 0
+    @cash = attrs[:cash] || 0
   end
 
   def create_account
