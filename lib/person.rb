@@ -1,5 +1,6 @@
 require './lib/account.rb'
 require 'pry'
+require './lib/atm.rb'
 
 class Person
   attr_accessor :name, :cash, :account
@@ -10,7 +11,11 @@ class Person
   end
 
   def create_account
-    @account = Account.new(owner: self)
+    if @account == nil || @account.account_status == :deactivated
+      @account = Account.new(owner: self)
+    else
+      already_exists
+    end
   end
 
   def deposit(amount)
@@ -48,5 +53,9 @@ class Person
 
   def missing_name
     raise 'A name is required'
+  end
+
+  def already_exists
+    raise 'Account already exists'
   end
 end

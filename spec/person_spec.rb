@@ -29,6 +29,10 @@ describe Person do
       expect(subject.account).to be_an_instance_of Account
     end
 
+    it 'is expected to raise error if user tries to create account that already exists' do
+      expect{subject.create_account}.to raise_error(RuntimeError, 'Account already exists')
+    end
+
     it 'with the creator as an owner' do
       expect(subject.account.owner).to be subject
     end

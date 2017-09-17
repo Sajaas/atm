@@ -17,7 +17,7 @@ atm = Atm.new
 
 To use this ATM you need to create a person of the _**Person class**_ (takes arguments *name*, *cash*).
 ```ruby
-your_name = Person.new({name: your_name, cash: amount_of_cash_in_integers})
+your_name = Person.new({name: your_name_as_a_string, cash: amount_of_cash_in_integers})
 ```
 
 The _**Person class**_ has these methods: **create_account**, **deposit** (takes an integer), **withdraw_cash** (takes arguments *atm*, *amount*, *pin_code*, *account*).
@@ -35,6 +35,7 @@ your_name.deactivate
 ## It will error if you try to withdraw/deposit money if:
 * no atm is created
 * no account is created
+* if you try to create an account that already exists
 * no account owner is set
 * not enough funds in account
 * not enough funds in atm
